@@ -26,7 +26,22 @@ quizSentence.innerHTML += `<p>${useQuizData.title}</p>`
 
 // 選択肢
 for (const choice of useQuizData.choices) {
-    quizAnswerSelect.innerHTML += `<input type="radio" name="answer" value="${choice.id}">${choice.value}`
+    // html直接書くやり方
+    // quizAnswerSelect.innerHTML += `<input id="${choice.id}" class="radio-inline__input" type="radio" name="answer" value="${choice.id}"><label class="radio-inline__label" for="${choice.id}">${choice.value}</label>`
+
+    // elementクラスとそのプロパティを使うやり方
+    const input = document.createElement("input");
+    input.id = choice.id;
+    input.className = "radio-inline__input";
+    input.type = "radio";
+    input.name = "answer";
+    quizAnswerSelect.appendChild(input)
+
+    const label = document.createElement("label");
+    label.className = "radio-inline__label";
+    label.htmlFor = choice.id;
+    label.textContent = choice.value;
+    quizAnswerSelect.appendChild(label)
 }
 
 // ボタン押下時
@@ -35,7 +50,7 @@ quizSendButton.onclick = ev => {
     for (const element of quizAnswerSelect.querySelectorAll("input")) {
         // 選択肢の状態を確認し、チェック状態なら判定
         if (element.checked) {
-            const result = element.value == useQuizData.correctId
+            const result = element.id == useQuizData.correctId
             const str = result ? "正解です" : "不正解です";
             quizResult.innerHTML = `<p>${str}</p>`
         }
