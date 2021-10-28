@@ -11,12 +11,6 @@ h1 {
     padding:0.01em 16px;
 }
 
-.container:after, .container:before {
-    content:"";
-    display:table;
-    clear:both;
-}
-
 .content-top {
     max-width:980px;
     margin:auto;
@@ -29,13 +23,8 @@ h1 {
 
 .quiz-button {
     margin: 15px;
-    border:none;
-    display:inline-block;
-    outline:0;
     padding:6px 16px;
-    vertical-align:middle;
     overflow:hidden;
-    text-decoration:none!important;
     color:#000000;
     background-color:#f1f1f1;
     text-align:center;
@@ -56,14 +45,11 @@ h1 {
     border:1px solid #334c66;
     background-color:#69c;
     color:#e0ebf5;
-    -webkit-box-shadow:inset 0px 0px 8px #334c66;
-    -moz-box-shadow:inset 0px 0px 2px #3a6da0;
     box-shadow:inset 0px 0px 2px #3a6da0;
 }
 
 .radio-inline__input {
-    clip: rect(1px, 1px, 1px, 1px);
-    position: absolute !important;
+    display: none;
 }
 
 .radio-inline__label {
@@ -82,11 +68,4 @@ h1 {
     background: #B54A4A;
     color: #fff;
     text-shadow: 0 0 1px rgba(0,0,0,.7);
-}
-
-.radio-inline__input:focus + .radio-inline__label {
-    outline-color: #4D90FE;
-    outline-offset: -2px;
-    outline-style: auto;
-    outline-width: 5px;
 }
