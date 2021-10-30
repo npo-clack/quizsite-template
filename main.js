@@ -14,12 +14,22 @@ var quizData = [
     }
 ]
 
+var count = {
+    correct: 0,
+    incorrect: 0
+}
+
+
+const countSentence = document.getElementById('count_sentence');
 const quizSentence = document.getElementById('quiz_sentence');
 const quizAnswerSelect = document.getElementById('quiz_answer_select');
 const quizSendButton = document.getElementById('quiz_send_button');
 const quizResult = document.getElementById('quiz_result');
 
 const useQuizData = quizData[0];
+
+// 正解・不正解数カウント
+countSentence.innerHTML = `<p>正解数: ${count.correct} / 不正解数: ${count.incorrect}</p>`;
 
 // 問題文
 quizSentence.innerHTML += `<p>${useQuizData.title}</p>`
@@ -52,6 +62,9 @@ quizSendButton.onclick = ev => {
         if (element.checked) {
             const result = element.id == useQuizData.correctId
             const str = result ? "正解です" : "不正解です";
+            count.correct += result ? 1 : 0;
+            count.incorrect += result ? 0 : 1;
+            countSentence.innerHTML = `<p>正解数: ${count.correct} / 不正解数: ${count.incorrect}</p>`;
             quizResult.innerHTML = `<p>${str}</p>`
         }
     }
