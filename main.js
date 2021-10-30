@@ -14,6 +14,7 @@ var quizData = [
     }
 ]
 
+const containerArea = document.getElementsByClassName('container')[0];
 const quizSentence = document.getElementById('quiz_sentence');
 const quizAnswerSelect = document.getElementById('quiz_answer_select');
 const quizSendButton = document.getElementById('quiz_send_button');
@@ -45,14 +46,36 @@ for (const choice of useQuizData.choices) {
 }
 
 // ボタン押下時
+let interval;
 quizSendButton.onclick = ev => {
+    clearInterval(interval);
+
     // 選択肢を全部取得
     for (const element of quizAnswerSelect.querySelectorAll("input")) {
         // 選択肢の状態を確認し、チェック状態なら判定
         if (element.checked) {
             const result = element.id == useQuizData.correctId
-            const str = result ? "正解です" : "不正解です";
-            quizResult.innerHTML = `<p>${str}</p>`
+            if(result){
+                quizResult.innerHTML = "<p>正解です</p>";
+                interval = setInterval(createStar.bind(undefined, containerArea), 200);
+            }else{
+                quizResult.innerHTML = "<p>不正解です</p>";
+            }           
         }
     }
+};
+
+
+// キラキラを生成する関数
+const createStar = (el) => {
+  const starEl = document.createElement("span");
+  starEl.className = "star";
+  starEl.style.left = Math.random() * el.clientWidth + "px";
+  starEl.style.top = Math.random() * el.clientHeight + "px";
+  el.appendChild(starEl);
+
+  // 一定時間経つとキラキラを消す
+  setTimeout(() => {
+    starEl.remove();
+  }, 1000);
 };
