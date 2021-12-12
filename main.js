@@ -1,6 +1,6 @@
-var quizData = [
+const quizData = [
     {
-        title:"織田信長は何年生まれ？",
+        title:"関ヶ原の戦いが起こった年は？",
         choices:[
             { id:1, value:"1600"},
             { id:2, value:"1500"},
@@ -10,7 +10,7 @@ var quizData = [
         correctId: 1,
     },
     {
-
+        // 問題を足す場合はここに書こう
     }
 ]
 
