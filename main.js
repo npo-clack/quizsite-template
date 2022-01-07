@@ -8,6 +8,7 @@ const quizData = [
             { id:4, value:"1500"},
         ],
         correctId: 1,
+        hint: "1600年ごろは徳川家康の天下だよ"
     },
     {
         // 問題を足す場合はここに書こう
@@ -17,6 +18,8 @@ const quizData = [
 const quizSentence = document.getElementById('quiz_sentence');
 const quizAnswerSelect = document.getElementById('quiz_answer_select');
 const quizSendButton = document.getElementById('quiz_send_button');
+const hintSendButton = document.getElementById('hint_send_button');
+const hintResult = document.getElementById('hint_result');
 const quizResult = document.getElementById('quiz_result');
 
 const useQuizData = quizData[0];
@@ -44,7 +47,7 @@ for (const choice of useQuizData.choices) {
     quizAnswerSelect.appendChild(label)
 }
 
-// ボタン押下時
+// 回答ボタン押下時
 quizSendButton.onclick = ev => {
     // 選択肢を全部取得
     for (const element of quizAnswerSelect.querySelectorAll("input")) {
@@ -55,4 +58,16 @@ quizSendButton.onclick = ev => {
             quizResult.innerHTML = `<p>${str}</p>`
         }
     }
+};
+
+// ヒントボタン押下時
+hintSendButton.onclick = ev => {
+    hintResult.innerHTML = `<p>${useQuizData.hint}</p>`
+
+    if (hintResult.style.visibility=="visible") {
+		hintResult.style.visibility ="hidden";
+	} else {
+		hintResult.style.visibility ="visible";
+	}
+
 };
